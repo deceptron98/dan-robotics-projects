@@ -1,29 +1,4 @@
-/*
-  Arduino Obstacle-Avoiding Robot
-  Board: Arduino UNO
-  Motor driver: L298N
-  Sensors: Two digital IR sensors and one HC-SR04
-
-  IR sensors:
-    Left OUT  -> D7
-    Right OUT -> D12
-
-  HC-SR04:
-    TRIG -> D10
-    ECHO -> D11
-
-  L298N:
-    ENA -> D3 (PWM)
-    IN1 -> D5
-    IN2 -> D6
-    ENB -> D9 (PWM)
-    IN3 -> A0
-    IN4 -> A1
-
-  IR_STATE defines the digital level indicating
-  obstacle detection. Change it to HIGH if needed.
-*/
-
+```cpp
 const byte LEFT_IR = 7;
 const byte RIGHT_IR = 12;
 
@@ -82,18 +57,14 @@ void avoidObstacle(bool leftBlocked, bool rightBlocked) {
   stopMotors();
   delay(150);
 
-  // Reverse briefly before changing direction.
   setMotor(-REVERSE_SPEED, -REVERSE_SPEED);
   delay(250);
 
   if (leftBlocked && !rightBlocked) {
-    // Obstacle on the left: turn right.
     setMotor(TURN_SPEED, -TURN_SPEED);
   } else if (rightBlocked && !leftBlocked) {
-    // Obstacle on the right: turn left.
     setMotor(-TURN_SPEED, TURN_SPEED);
   } else {
-    // Front obstacle or both sides blocked.
     setMotor(TURN_SPEED, -TURN_SPEED);
   }
 
@@ -128,9 +99,7 @@ void loop() {
   bool rightBlocked = digitalRead(RIGHT_IR) == IR_STATE;
 
   long distance = readDistanceCM();
-
-  bool frontBlocked =
-      distance > 0 && distance <= SAFE_DISTANCE_CM;
+  bool frontBlocked = distance > 0 && distance <= SAFE_DISTANCE_CM;
 
   Serial.print(F("Distance: "));
   Serial.print(distance);
@@ -147,3 +116,4 @@ void loop() {
 
   delay(50);
 }
+```
