@@ -18,7 +18,7 @@ Welcome to my robotics and embedded systems portfolio. This repository documents
 
 ### Autonomous Mobile Robot (AMR)
 
-My AMR project integrates embedded hardware with ROS 2 for mobile robot sensing, odometry, robot description, mapping, and autonomous navigation.
+The AMR project explores mobile robot sensing, wheel odometry, robot description, mapping, and autonomous navigation using ROS 2 and embedded hardware.
 
 **Technology stack and hardware:**
 - ROS 2 Humble
@@ -29,7 +29,7 @@ My AMR project integrates embedded hardware with ROS 2 for mobile robot sensing,
 - Wheel encoders and ultrasonic sensors
 - SLAM Toolbox and Nav2
 
-The AMR implementation and supporting configurations are maintained separately from the smaller Arduino projects as they are organized and documented.
+The repository currently includes an [AMR three-ultrasonic hardware test](Autonomous_Mobile_Robot/Hardware_Tests/), documenting the Arduino-level sensing and motor-control stage. The complete ROS 2 implementation and supporting configurations are maintained separately from these smaller portfolio sketches.
 
 ## Skills Demonstrated
 
@@ -45,8 +45,7 @@ The AMR implementation and supporting configurations are maintained separately f
 
 - `Arduino/` — Embedded systems sketches and documentation.
 - `Robotics/` — Robot control projects and documentation.
-- `Autonomous_Mobile_Robot/` — Intended location for organized AMR code and configurations.
-- `images/` — Intended location for project photographs and demonstrations.
+- `Autonomous_Mobile_Robot/` — AMR hardware tests and related documentation.
 
 ## Purpose
 
