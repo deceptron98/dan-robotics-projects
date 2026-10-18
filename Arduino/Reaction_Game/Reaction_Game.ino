@@ -1,16 +1,4 @@
-
-/*
-  Arduino Reaction Game
-  Board: Arduino UNO
-
-  LED: Built-in LED on D13
-  Push button: D2 connected to GND
-
-  The player presses the button to start a round,
-  waits for the LED to illuminate, then presses it
-  as quickly as possible.
-*/
-
+```cpp
 const byte LED_PIN = LED_BUILTIN;
 const byte BUTTON_PIN = 2;
 
@@ -44,7 +32,6 @@ void setup() {
 void loop() {
   digitalWrite(LED_PIN, LOW);
 
-  // Wait for the player to start
   while (!buttonPressed()) {
     delay(5);
   }
@@ -54,13 +41,11 @@ void loop() {
   Serial.println(F("Get ready..."));
   Serial.println(F("Wait for the LED!"));
 
-  // Random waiting period
   unsigned long waitTime =
       random(MIN_WAIT_MS, MAX_WAIT_MS + 1);
 
   unsigned long waitStart = millis();
 
-  // A press before the LED lights is a false start
   while (millis() - waitStart < waitTime) {
     if (buttonPressed()) {
       Serial.println(F("False start! Try again."));
@@ -71,7 +56,6 @@ void loop() {
     delay(1);
   }
 
-  // Signal the player to react
   digitalWrite(LED_PIN, HIGH);
   unsigned long signalTime = micros();
 
@@ -79,8 +63,7 @@ void loop() {
     delayMicroseconds(100);
   }
 
-  unsigned long reactionTime =
-      micros() - signalTime;
+  unsigned long reactionTime = micros() - signalTime;
 
   digitalWrite(LED_PIN, LOW);
 
@@ -92,3 +75,4 @@ void loop() {
   Serial.println(F("Press the button to play again."));
   delay(500);
 }
+```
