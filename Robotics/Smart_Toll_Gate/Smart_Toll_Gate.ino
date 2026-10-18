@@ -1,21 +1,4 @@
-/*
-  Smart Toll Gate System
-  Board: Arduino UNO
-  Sensor: HC-SR04 ultrasonic sensor
-  Actuator: Servo motor
-  Indicator: Buzzer
-
-  HC-SR04:
-    TRIG -> D7
-    ECHO -> D8
-
-  Servo signal -> D9
-  Buzzer       -> D4
-
-  This implementation automatically opens the barrier
-  when a vehicle is detected within the set distance.
-*/
-
+```cpp
 #include <Servo.h>
 
 const byte TRIG_PIN = 7;
@@ -60,7 +43,6 @@ void openGate() {
   Serial.println(F("Vehicle detected - gate opened"));
 
   delay(GATE_OPEN_TIME_MS);
-
   closeGate();
 }
 
@@ -83,17 +65,13 @@ void loop() {
   Serial.print(distance);
   Serial.println(F(" cm"));
 
-  if (distance > 0 &&
-      distance <= DETECTION_DISTANCE_CM) {
+  if (distance > 0 && distance <= DETECTION_DISTANCE_CM) {
     openGate();
 
-    // Wait for the vehicle to move away before
-    // accepting another detection.
     while (true) {
       distance = readDistanceCM();
 
-      if (distance < 0 ||
-          distance > DETECTION_DISTANCE_CM) {
+      if (distance < 0 || distance > DETECTION_DISTANCE_CM) {
         break;
       }
 
@@ -103,3 +81,4 @@ void loop() {
 
   delay(100);
 }
+```
